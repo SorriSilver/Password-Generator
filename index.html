@@ -32,7 +32,7 @@
         <div id="passwordGenArea">Your Secure Password</div>
         <hr>
         <button onclick="generatePassword()">Generate Password</button>
-        <button id="copyButton" onclick="copyToClipBoard()" disabled>Generate Password</button>
+        <button id="copyButton" onclick="copyToClipBoard()" disabled>Copy to Clipboard</button>
     </div>
     <script>
         let passwordArea = document.getElementById("passwordGenArea");
@@ -43,21 +43,65 @@
 
         function generatePassword() {
             var special = document.getElementById("specialChars").checked;
-            var special = document.getElementById("numericChars").checked;
-            var special = document.getElementById("lowercaseChars").checked;
-            var special = document.getElementById("uppercaseChars").checked;
+            var numbers = document.getElementById("numericChars").checked;
+            var lowercase = document.getElementById("lowercaseChars").checked;
+            var uppercase = document.getElementById("uppercaseChars").checked;
             var length = document.getElementById("length").value
+
+            var types = [special, numbers, lowercase, uppercase];
+            var generatedPassword = "";
+
             if (special || numbers || lowercase || uppercase) {
                 for (var i = 1; i <= length; i++) {
-                    var type = Math.ceil(Math.random() * 4);
-                    if (type = 1 && special) {
+                    var type = getValidRandomCharType(types);
 
-                    } else { }
+
+
                 }
+                copyButton.removeAttribute("disabled");
+            } else {
+                alert("Please select a character type");
             }
 
 
-            copyButton.removeAttribute("disabled")
+
+
+
+        }
+        function getValidRandomCharType(types) {
+            var type = Math.ceil(Math.random() * 4);
+            while (types[type - 1] == false) {
+                type = Math.ceil(Math.random() * 4);
+            }
+            return type;
+        }
+        function getRandomCharacter(type) {
+            if (type == 1 && special) {
+                generatedPassword += getRandomSpecialCharacter();
+
+            } else if (type == 2 && numbers) {
+                generatedPassword += getRandomNumber();
+
+            } else if (type == 3 && lowercase) {
+                generatedPassword += getrandomLowerCaseCharacter();
+
+            } else if (type == 4 && uppercase) {
+                generatedPassword += getrandomUpperCaseCharacter();
+            }
+
+        }
+
+        function getRandomSpecialCharacter() {
+
+        }
+        function getRandomNumber() {
+
+        }
+        function getrandomLowerCaseCharacter() {
+
+        }
+        function getrandomUpperCaseCharacter() {
+
         }
     </script>
 </body>
