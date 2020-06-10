@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1> Password Generator</h1>
+    </div>
+    <div>
+        <h2>Generate Password</h2>
+        <hr>
+        <h3>Options</h3>
+        <form>
+            <label for="length">Length</label>
+            <input type="number" name="length" id="length" min="8" max="128" step="1" value="8">
+            <br>
+            <label for"specialChars">Special Characters</label>
+            <input type="checkbox" name="specialChars" id="specialChars" checked>
+            <Label for="numericChars">Numbers</Label>
+            <input type="checkbox" name="numericChars" id="numericChars" checked>
+            <label for="lowercaseChars">Lowercase Letters</label>
+            <input type="checkbox" name="lowercaseChars" id="lowercaseChars">
+            <label for="uppercaseChars">Uppercase Letters</label>
+            <input type="checkbox" name="uppercaseChars" id="uppercaseChars">
+        </form>
+        <hr>
+        <div id="passwordGenArea">Your Secure Password</div>
+        <hr>
+        <button onclick="generatePassword()">Generate Password</button>
+        <button id="copyButton" onclick="copyToClipBoard()" disabled>Generate Password</button>
+    </div>
+    <script>
+        let passwordArea = document.getElementById("passwordGenArea");
+        let copyButton = document.getElementById("copyButton");
+        (function () {
+
+        })();
+
+        function generatePassword() {
+            var special = document.getElementById("specialChars").checked;
+            var special = document.getElementById("numericChars").checked;
+            var special = document.getElementById("lowercaseChars").checked;
+            var special = document.getElementById("uppercaseChars").checked;
+            var length = document.getElementById("length").value
+            if (special || numbers || lowercase || uppercase) {
+                for (var i = 1; i <= length; i++) {
+                    var type = Math.ceil(Math.random() * 4);
+                    if (type = 1 && special) {
+
+                    } else { }
+                }
+            }
+
+
+            copyButton.removeAttribute("disabled")
+        }
+    </script>
+</body>
+
+</html>
