@@ -35,13 +35,15 @@
         <button id="copyButton" onclick="copyToClipBoard()" disabled>Copy to Clipboard</button>
     </div>
     <script>
-        let passwordArea = document.getElementById("passwordGenArea");
-        let copyButton = document.getElementById("copyButton");
+        var passwordArea = document.getElementById("passwordGenArea");
+        var copyButton = document.getElementById("copyButton");
+        var generatedPassword = "";
         (function () {
 
         })();
 
         function generatePassword() {
+            generatedPassword = "";
             var special = document.getElementById("specialChars").checked;
             var numbers = document.getElementById("numericChars").checked;
             var lowercase = document.getElementById("lowercaseChars").checked;
@@ -49,15 +51,13 @@
             var length = document.getElementById("length").value
 
             var types = [special, numbers, lowercase, uppercase];
-            var generatedPassword = "";
+
 
             if (special || numbers || lowercase || uppercase) {
                 for (var i = 1; i <= length; i++) {
-                    var type = getValidRandomCharType(types);
-
-
-
+                    getRandomCharacter(getValidRandomCharType(types));
                 }
+                passwordArea.innerHTML = generatedPassword;
                 copyButton.removeAttribute("disabled");
             } else {
                 alert("Please select a character type");
@@ -76,6 +76,10 @@
             return type;
         }
         function getRandomCharacter(type) {
+            var special = document.getElementById("specialChars").checked;
+            var numbers = document.getElementById("numericChars").checked;
+            var lowercase = document.getElementById("lowercaseChars").checked;
+            var uppercase = document.getElementById("uppercaseChars").checked;
             if (type == 1 && special) {
                 generatedPassword += getRandomSpecialCharacter();
 
@@ -92,16 +96,20 @@
         }
 
         function getRandomSpecialCharacter() {
-
+            var specialCharacters = " ~`!@#$%^&*()-_+={[]}|:;\"'<,>.?/";
+            var i = Math.floor(Math.random() * specialCharacters.length);
+            return specialCharacters.substr(i, 1);
         }
         function getRandomNumber() {
-
+            return Math.floor(Math.random() * 10);
         }
         function getrandomLowerCaseCharacter() {
-
+            var result = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+            return result;
         }
         function getrandomUpperCaseCharacter() {
-
+            var result = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+            return result;
         }
     </script>
 </body>
